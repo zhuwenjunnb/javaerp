@@ -63,7 +63,7 @@ public class Zwjwarehousewarrant extends Model<Zwjwarehousewarrant> {
     @TableField("Permitter")
     private String Permitter;
 
-    @ApiModelProperty(value = "	测试数据")
+    @ApiModelProperty(value = "仓库")
     @TableField("CsOne")
     private String CsOne;
 

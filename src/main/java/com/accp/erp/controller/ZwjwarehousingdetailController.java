@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accp.erp.entity.Comdepartment;
+import com.accp.erp.entity.Zwjwarehousewarrant;
 import com.accp.erp.entity.Zwjwarehousingdetail;
+import com.accp.erp.service.IZwjwarehousewarrantService;
 import com.accp.erp.service.IZwjwarehousingdetailService;
 import com.accp.erp.uitis.PageResult;
 import com.accp.erp.uitis.Result;
@@ -32,8 +34,16 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 @RestController
 @RequestMapping("/zwjwarehousingdetail")
 public class ZwjwarehousingdetailController {
+	
+	//采购入库明细表
 	@Autowired
 	IZwjwarehousingdetailService service;
+	
+	
+	//采购入库主表
+	@Autowired
+	IZwjwarehousewarrantService  warehousewarrantService;
+	
 	
 	@PostMapping("/warehousingdetailquery")
 	public Result findPage(@RequestParam(defaultValue = "1") Integer current,
@@ -88,12 +98,12 @@ public class ZwjwarehousingdetailController {
     /**
      * 新增采购入库单
      */
-    
-    public Result add(@RequestBody Zwjwarehousingdetail zwjwarehousingdetail) {
+    @RequestMapping("/add")
+    public Result add(@RequestBody Zwjwarehousewarrant zwjwarehousewarrant) {
     	
     	QueryWrapper wrapper = new QueryWrapper();
     	
-    	service.save(zwjwarehousingdetail);
+    	warehousewarrantService.save(zwjwarehousewarrant);
     	
     	 return new Result(ResultCode.SUCCESS,"新增成功");
     }
